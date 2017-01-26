@@ -72,6 +72,49 @@ paths:
                 type: integer
         404:
           description: no pizzas with that ID or name
+          
+          
+  /addPizza:
+    post:
+      summary: add a pizza
+      description: it returns the pizza inserted
+      parameters:
+        - name: ID
+          in: formData
+          description: ID of the pizza
+          required: true
+          type: string
+        - name: name
+          in: formData
+          description: name of the pizza
+          required: true
+          type: string
+        - name: price
+          in: formData
+          description: price of the pizza
+          required: true
+          type: integer
+        - name: ingridients
+          in: formData
+          description: ingridients of the pizza
+          required: true
+          type: array
+            items:
+                type:string
+          
+      responses:
+        200:
+          description: pizza object
+          schema: 
+              $ref: "#/definitions/pizza"
+        406:
+          description: ID of error
+          schema: 
+            properties:
+              error:
+                type: integer
+        404:
+          description: no pizza inserted             
             
   /updatePizzasByPrice:
     post:
